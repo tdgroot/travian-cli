@@ -21,7 +21,7 @@ class Translator
         if (isset($this->translations['nl_NL'][$searchKey])) {
             return $this->translations['nl_NL'][$searchKey];
         }
-        return $searchKey;
+        return $subject;
     }
 
 }
