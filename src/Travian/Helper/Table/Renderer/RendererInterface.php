@@ -5,6 +5,11 @@ namespace Timpack\Travian\Helper\Table\Renderer;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Interface RendererInterface
+ * @package Timpack\Travian\Helper\Table\Renderer
+ * @link https://github.com/netz98/n98-magerun
+ */
 interface RendererInterface
 {
 

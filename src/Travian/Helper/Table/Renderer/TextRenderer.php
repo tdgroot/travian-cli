@@ -7,6 +7,11 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableStyle;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class TextRenderer
+ * @package Timpack\Travian\Helper\Table\Renderer
+ * @link https://github.com/netz98/n98-magerun
+ */
 class TextRenderer implements RendererInterface
 {
 

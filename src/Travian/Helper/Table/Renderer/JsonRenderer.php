@@ -4,6 +4,11 @@ namespace Timpack\Travian\Helper\Table\Renderer;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class JsonRenderer
+ * @package Timpack\Travian\Helper\Table\Renderer
+ * @link https://github.com/netz98/n98-magerun
+ */
 class JsonRenderer implements RendererInterface
 {
 
