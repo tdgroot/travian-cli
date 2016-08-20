@@ -7,6 +7,10 @@
         {
             "name": "Timon de Groot",
             "email": "tdegroot96@gmail.com"
+        },
+        {
+            "name": "Wysaard",
+            "email": "mail@wysaard.nl"
         }
     ],
     "require": {

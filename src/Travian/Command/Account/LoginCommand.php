@@ -25,32 +25,39 @@ class LoginCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $username = $input->getArgument('username');
+        // Try getting password from command line
         $password = $input->getOption('password');
 
+        // Prompt if no password was passed
+        if(!$password){
+            $helper = $this->getHelper('question');
+
+            $question = new Question('Please enter your password: ');
+            $question->setValidator(function ($value) {
+                if (trim($value) == '') {
+                    throw new \Exception('The password can not be empty');
+                }
+
+                return $value;
+            });
+            $question->setHidden(true);
+            $question->setMaxAttempts(20);
+            $password = $helper->ask($input, $output, $question);
+        }
+
+        $username = $input->getArgument('username');
+      
         $account = new Account();
         if ($account->isLoggedIn($username)) {
-            throw new LogicException('Already logged in with this username.');
-        }
-
-        if (!$password) {
-            /** @var QuestionHelper $questionHelper */
-            $questionHelper = $this->getHelper('question');
-            $question = new Question('Password: ');
-            $question->setValidator(function ($password) {
-                if (empty($password)) {
-                    throw new InvalidArgumentException('No password entered, please try again.');
-                }
-            });
-            $password = $questionHelper->ask($input, $output, $question);
-        }
-
-        $loginSuccess = $account->login($username, $password);
-        if ($loginSuccess) {
-            $output->writeln("<info>Successfully logged in</info>");
+            $output->writeln('Already logged in with this username');
         } else {
-            $output->writeln("Failed to login");
+            $loginSuccess = $account->login($username, $password);
+
+            if ($loginSuccess) {
+                $output->writeln('<info>Successfully logged in</info>');
+            } else {
+                $output->writeln('Failed to login');
+            }
         }
     }
-
 }
