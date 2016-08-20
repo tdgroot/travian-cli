@@ -10,9 +10,10 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Timpack\Travian\Command\AbstractCommand;
 use Timpack\Travian\Model\Account;
 
-class LoginCommand extends Command
+class LoginCommand extends AbstractCommand
 {
 
     public function configure()
@@ -21,6 +22,8 @@ class LoginCommand extends Command
             ->setDescription('Login using your credentials')
             ->addArgument('username', InputArgument::REQUIRED, 'Username')
             ->addOption('password', 'p', InputArgument::OPTIONAL, "User's password");
+
+        parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

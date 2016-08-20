@@ -15,6 +15,8 @@ class StatusCommand extends Command
     {
         $this->setName('account:status')
             ->setDescription('Get current account status');
+
+        parent::configure();
     }
 
     public function execute(InputInterface $input, OutputInterface $output)

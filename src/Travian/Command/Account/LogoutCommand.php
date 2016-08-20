@@ -15,6 +15,8 @@ class LogoutCommand extends Command
     {
         $this->setName('account:logout')
             ->setDescription('Logout from current session');
+
+        parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
