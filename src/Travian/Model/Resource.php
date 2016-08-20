@@ -38,7 +38,7 @@ class Resource extends Model
             preg_match("/build\.php\?id=([0-9]+)/", $href, $hrefMatches);
 
             $altMatches = [];
-            preg_match_all("/([a-zA-Z\s]+) [a-zA-Z]+ ([0-9]+)/", $alt, $altMatches);
+            preg_match_all("/([a-zA-Z\s\-]+) [a-zA-Z]+ ([0-9]+)/", $alt, $altMatches);
 
             $resourceField->constructionId = (int) $hrefMatches[1];
             $resourceField->name = $translator->translate($altMatches[1][0]);
