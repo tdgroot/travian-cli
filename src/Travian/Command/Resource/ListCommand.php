@@ -30,11 +30,15 @@ class ListCommand extends AbstractCommand
             $rows[] = [
                 'id' => $resourceField->constructionId,
                 'type' => $resourceField->type,
-                'level' => $resourceField->level
+                'level' => $resourceField->level,
+                'clay' => $resourceField->upgradeInfo->clay,
+                'lumber' => $resourceField->upgradeInfo->lumber,
+                'iron' => $resourceField->upgradeInfo->iron,
+                'crop' => $resourceField->upgradeInfo->crop
             ];
         }
-        $renderer->render($output, $rows);
 
+        $renderer->render($output, $rows);
     }
 
 }
