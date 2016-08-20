@@ -15,7 +15,7 @@ class Translator
         ]
     ];
 
-    public function translate($subject)
+    public function translate($subject) : string
     {
         $searchKey = strtolower($subject);
         if (isset($this->translations['nl_NL'][$searchKey])) {

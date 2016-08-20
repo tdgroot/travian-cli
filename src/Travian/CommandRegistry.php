@@ -12,11 +12,9 @@ class CommandRegistry
 
     private $commands = [];
 
-    private function __construct()
-    {
-    }
+    private function __construct() { }
 
-    public static function getInstance()
+    public static function getInstance() : self
     {
         if (is_null(self::$instance)) {
             self::$instance = new CommandRegistry();
@@ -24,18 +22,18 @@ class CommandRegistry
         return self::$instance;
     }
 
-    public function getCommands()
+    public function getCommands() : array
     {
         return $this->commands;
     }
 
-    public function register($command)
+    public function register($command) : self
     {
         $this->commands[] = $command;
         return $this;
     }
 
-    public function unregister($command)
+    public function unregister($command) : self
     {
         $this->commands = array_filter($this->commands, function ($value) use ($command) {
             return $value !== $command;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Timpack\Travian\Model\Build;
+namespace Timpack\Travian\Model\Construction\Upgrade;
 
 
-class UpgradeInfo
+class Info
 {
 
     /**

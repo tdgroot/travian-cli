@@ -6,8 +6,8 @@ namespace Timpack\Travian\Command\Resource;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Timpack\Travian\Command\AbstractCommand;
-use Timpack\Travian\Model\ResourceField;
-use Timpack\Travian\Model\Resources;
+use Timpack\Travian\Model\Resource\Field;
+use Timpack\Travian\Model\Resource;
 
 class ListCommand extends AbstractCommand
 {
@@ -22,13 +22,13 @@ class ListCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $renderer = $this->getRenderer($input, $output);
-        $resources = new Resources();
+        $resources = new Resource();
         $rows = [];
 
-        /** @var ResourceField $resourceField */
+        /** @var Field $resourceField */
         foreach ($resources->getResourceList() as $resourceField) {
             $rows[] = [
-                'id' => $resourceField->buildId,
+                'id' => $resourceField->constructionId,
                 'type' => $resourceField->type,
                 'level' => $resourceField->level
             ];

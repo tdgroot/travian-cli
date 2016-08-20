@@ -3,10 +3,9 @@
 namespace Timpack\Travian\Model;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Cookie\FileCookieJar;
 use Psr\Http\Message\ResponseInterface;
 
-class Account extends AbstractModel
+class Account extends Model
 {
 
     /**

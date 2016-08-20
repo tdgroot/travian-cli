@@ -26,7 +26,7 @@ class AbstractCommand extends Command
      * @param OutputInterface $output
      * @return RendererInterface
      */
-    public function getRenderer(InputInterface $input, OutputInterface $output)
+    public function getRenderer(InputInterface $input, OutputInterface $output) : RendererInterface
     {
         if ($input->getOption('csv')) {
             $renderer = new CsvRenderer();

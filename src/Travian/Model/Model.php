@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\FileCookieJar;
 use Psr\Http\Message\ResponseInterface;
 
-class AbstractModel
+class Model
 {
 
     /**
@@ -40,11 +40,20 @@ class AbstractModel
         }
     }
 
-    public function load()
+    public function load() : self
     {
-        $this->response = $this->client->get($this->dataSource);
+        $this->response = $this->client->get($this->getDataSource());
         $body = (string)$this->response->getBody();
         $this->data = FluentDOM::QueryCss($body, 'text/html5');
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataSource() : string
+    {
+        return $this->dataSource;
     }
 
 }

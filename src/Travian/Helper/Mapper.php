@@ -13,7 +13,7 @@ class Mapper
         'cropfield' => 'crop'
     ];
 
-    public function mapResourceNameToType($name)
+    public function mapResourceNameToType($name) : string
     {
         $name = strtolower($name);
         if (isset($this->resourceTypeMap[$name])) {
