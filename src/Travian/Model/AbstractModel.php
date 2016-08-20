@@ -31,11 +31,13 @@ class AbstractModel
      */
     protected $data;
 
-    public function __construct()
+    public function __construct($load = true)
     {
         $cookieJar = new FileCookieJar(sys_get_temp_dir() . '/ttc.txt', true);
         $this->client = new Client(['base_uri' => 'http://ts3.travian.nl', 'cookies' => $cookieJar]);
-        $this->load();
+        if ($load) {
+            $this->load();
+        }
     }
 
     public function load()
