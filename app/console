@@ -1,0 +1,16 @@
+#!/usr/bin/php
+<?php
+
+use Symfony\Component\Console\Application;
+use Timpack\Travian\CommandRegistry;
+
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+$application = new Application();
+
+$commandRegistry = CommandRegistry::getInstance()->getCommands();
+foreach($commandRegistry as $_commandClass) {
+    $application->add(new $_commandClass());
+}
+
+$application->run();

@@ -1,0 +1,28 @@
+{
+    "name": "timpack/travian-cli",
+    "description": "Travian client",
+    "minimum-stability": "alpha",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Timon de Groot",
+            "email": "tdegroot96@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.2",
+        "symfony/console": "^3.1",
+        "fluentdom/fluentdom": "^5.3",
+        "fluentdom/selectors-phpcss": "^1.0",
+        "fluentdom/html5": "^1.1"
+    },
+    "autoload":
+    {
+        "psr-4": {
+            "Timpack\\Travian\\": "src/Travian/"
+        },
+        "files": [
+            "src/Travian/register.php"
+        ]
+    }
+}
