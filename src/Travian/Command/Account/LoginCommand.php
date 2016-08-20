@@ -25,39 +25,39 @@ class LoginCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-		// Try getting password from command line
-		$password = $input->getOption('password');
+        // Try getting password from command line
+        $password = $input->getOption('password');
 
-		// Prompt if no password was passed
-		if(!$password){
-			$helper = $this->getHelper('question');
+        // Prompt if no password was passed
+        if(!$password){
+            $helper = $this->getHelper('question');
 
-    		$question = new Question('Please enter your password: ');
-    		$question->setValidator(function ($value) {
-        		if (trim($value) == '') {
-            		throw new \Exception('The password can not be empty');
-        		}
+            $question = new Question('Please enter your password: ');
+            $question->setValidator(function ($value) {
+                if (trim($value) == '') {
+                    throw new \Exception('The password can not be empty');
+                }
 
-				return $value;
-    		});
-    		$question->setHidden(true);
-    		$question->setMaxAttempts(20);
-    		$password = $helper->ask($input, $output, $question);
-		}
+                return $value;
+            });
+            $question->setHidden(true);
+            $question->setMaxAttempts(20);
+            $password = $helper->ask($input, $output, $question);
+        }
 
         $username = $input->getArgument('username');
       
         $account = new Account();
         if ($account->isLoggedIn($username)) {
             $output->writeln('Already logged in with this username');
-		} else {
-		  	$loginSuccess = $account->login($username, $password);
+        } else {
+            $loginSuccess = $account->login($username, $password);
 
-		    if ($loginSuccess) {
+            if ($loginSuccess) {
                 $output->writeln('<info>Successfully logged in</info>');
             } else {
                 $output->writeln('Failed to login');
-			}
-		}
+            }
+        }
     }
 }
