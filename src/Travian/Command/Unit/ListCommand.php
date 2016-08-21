@@ -25,8 +25,8 @@ class ListCommand extends AbstractCommand
         
         foreach ($units->getUnitList() as $unit) {
             $rows[] = [
-                'name' => $unit->name;
-                'amount' => $unit->amount;
+                'name' => $unit->name,
+                'amount' => $unit->amount
             ];
         }
 
