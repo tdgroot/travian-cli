@@ -13,4 +13,11 @@ class Field extends Construction
      */
     public $type;
 
+    
+    public function startUpgrade()
+    {
+        // TODO
+        
+        return false;
+    }
 }
