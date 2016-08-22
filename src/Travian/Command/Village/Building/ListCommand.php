@@ -48,6 +48,10 @@ class ListCommand extends AbstractCommand
                 } else {
                     $row['duration'] = $building->upgradeInfo->duration->toSeconds();
                 }
+                $row['lumber'] = $building->upgradeInfo->lumber;
+                $row['clay'] = $building->upgradeInfo->clay;
+                $row['iron'] = $building->upgradeInfo->iron;
+                $row['crop'] = $building->upgradeInfo->crop;
             }
 
             $rows[] = $row;
