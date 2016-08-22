@@ -15,7 +15,7 @@ class Resource extends Model
 
     protected $dataSource = 'dorf1.php';
 
-    public function getResourceList() : array
+    public function getResourceList($showUpgrades) : array
     {
         $result = [];
         $mapper = new Mapper();
@@ -32,7 +32,6 @@ class Resource extends Model
             $titleDom = FluentDOM::QueryCss("<div>$title</div>", 'text/html5');
 
             $resourceField = new Field();
-            $upgradeInfo = new Info();
 
             $hrefMatches = [];
             preg_match("/build\.php\?id=([0-9]+)/", $href, $hrefMatches);
@@ -44,13 +43,16 @@ class Resource extends Model
             $resourceField->name = $translator->translate($altMatches[1][0]);
             $resourceField->level = (int) $altMatches[2][0];
             $resourceField->type = $mapper->mapResourceNameToType($resourceField->name);
-            $resourceField->upgradeInfo = $upgradeInfo;
 
-            $upgradeInfo->upgradeLevel = $resourceField->level + 1;
-            $upgradeInfo->clay      = (int) ($titleDom->find('.resources.r1')->text());
-            $upgradeInfo->lumber    = (int) ($titleDom->find('.resources.r2')->text());
-            $upgradeInfo->iron      = (int) ($titleDom->find('.resources.r3')->text());
-            $upgradeInfo->crop      = (int) ($titleDom->find('.resources.r4')->text());
+            if ($showUpgrades) {
+                $resourceField->load();
+            }
+
+            $resourceField->upgradeInfo->upgradeLevel = $resourceField->level + 1;
+            $resourceField->upgradeInfo->clay      = (int) ($titleDom->find('.resources.r1')->text());
+            $resourceField->upgradeInfo->lumber    = (int) ($titleDom->find('.resources.r2')->text());
+            $resourceField->upgradeInfo->iron      = (int) ($titleDom->find('.resources.r3')->text());
+            $resourceField->upgradeInfo->crop      = (int) ($titleDom->find('.resources.r4')->text());
 
             $result[] = $resourceField;
         }

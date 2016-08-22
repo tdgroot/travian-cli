@@ -17,7 +17,7 @@ class ListCommand extends AbstractCommand
     {
         $this->setName('village:building:list')
             ->setDescription('Get a list of all buildings')
-            ->addOption('upgrades', 'u', InputOption::VALUE_NONE, 'Additionally add upgrades to the result')
+            ->addOption('show-upgrades', 'u', InputOption::VALUE_NONE, 'Include upgrade info to the result')
             ->addOption('human-readable', 'r', InputOption::VALUE_NONE, 'Format data to be human readable');
 
         parent::configure();
@@ -25,33 +25,29 @@ class ListCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $upgrades = $input->getOption('upgrades');
-
         $village = new Village(true);
         $rows = [];
-        $buildingList = $village->getBuildingList($upgrades);
 
+        $showUpgrades = $input->getOption('show-upgrades');
+        $humanReadable = $input->getOption('human-readable');
 
         /** @var Construction $building */
-        foreach ($buildingList as $building)
-        {
+        foreach ($village->getBuildingList($showUpgrades) as $building) {
             $row = [
                 'id' => $building->constructionId,
                 'name' => $building->name,
                 'level' => $building->level
             ];
 
-            if ($upgrades) {
-                $row['available'] = ($building->upgradeInfo->upgradeTime == 0 ? 1 : 0);
-                if ($input->getOption('human-readable')) {
-                    $row['duration'] = $building->upgradeInfo->duration->humanize();
-                } else {
-                    $row['duration'] = $building->upgradeInfo->duration->toSeconds();
-                }
-                $row['lumber'] = $building->upgradeInfo->lumber;
-                $row['clay'] = $building->upgradeInfo->clay;
-                $row['iron'] = $building->upgradeInfo->iron;
-                $row['crop'] = $building->upgradeInfo->crop;
+            if ($showUpgrades) {
+                $row = array_merge($row, [
+                    'available' => ($building->upgradeInfo->upgradeTime == 0 ? 1 : 0),
+                    'duration' => ($humanReadable ? $building->upgradeInfo->duration->humanize() : $building->upgradeInfo->duration->toSeconds()),
+                    'cost_lumber' => $building->upgradeInfo->lumber,
+                    'cost_clay' => $building->upgradeInfo->clay,
+                    'cost_iron' => $building->upgradeInfo->iron,
+                    'cost_crop' => $building->upgradeInfo->crop
+                ]);
             }
 
             $rows[] = $row;

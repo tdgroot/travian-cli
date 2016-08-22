@@ -13,11 +13,15 @@ class Field extends Construction
      */
     public $type;
 
-    
+    /**
+     * @var double
+     */
+    public $unitsPerHour;
+
+
     public function startUpgrade()
     {
-        // TODO
-        
         return false;
     }
+
 }

@@ -32,11 +32,9 @@ class Construction extends Model
      */
     public $upgradeInfo;
 
-    public function __construct($constructionId = null)
+    public function __construct($load = false)
     {
-        $this->constructionId = $constructionId;
         $this->upgradeInfo = new Info();
-        $load = ($this->constructionId ? true : false);
         parent::__construct($load);
     }
 

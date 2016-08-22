@@ -38,7 +38,7 @@ class Village extends Model
         $this->name = $regex->matchSingle('/\s*([0-9a-zA-Z\ ]+)/', $active->textContent);
     }
 
-    public function getBuildingList($upgrades) : array
+    public function getBuildingList($showUpgrades) : array
     {
         $result = [];
         $mapper = new Mapper();
@@ -66,7 +66,7 @@ class Village extends Model
             );
             $construction->level = (int)$regex->matchSingle("/([0-9]+)/", $altDom->find('.level')->text());
 
-            if ($upgrades) {
+            if ($showUpgrades) {
                 $construction->load();
             }
 
