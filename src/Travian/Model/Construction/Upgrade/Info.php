@@ -3,6 +3,8 @@
 namespace Timpack\Travian\Model\Construction\Upgrade;
 
 
+use Khill\Duration\Duration;
+
 class Info
 {
 
@@ -37,8 +39,8 @@ class Info
     public $upgradeTime;
 
     /**
-     * @var int
+     * @var Duration
      */
-    public $sufficientResourcesTime;
+    public $duration;
 
 }

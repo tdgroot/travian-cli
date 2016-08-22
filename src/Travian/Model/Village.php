@@ -8,14 +8,37 @@ use FluentDOM\Element;
 use Timpack\Travian\Helper\Mapper;
 use Timpack\Travian\Helper\Regex;
 use Timpack\Travian\Helper\Translator;
-use Timpack\Travian\Model\Construction\Upgrade\Info;
 
 class Village extends Model
 {
 
     protected $dataSource = 'dorf2.php';
 
-    public function getBuildingList() : array
+    /**
+     * @var int
+     */
+    public $villageId;
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @inheritdoc
+     */
+    public function afterLoad()
+    {
+        /** @var Element $active */
+        $active = $this->data->find('#sidebarBoxVillagelist')->find('.active')->get()[0];
+        $href = $active->firstElementChild->getAttribute('href');
+        $regex = new Regex();
+        $id = $regex->matchSingle('/.*=([0-9]+).*/', $href);
+        $this->villageId = (int) $id;
+        $this->name = $regex->matchSingle('/\s*([0-9a-zA-Z\ ]+)/', $active->textContent);
+    }
+
+    public function getBuildingList($upgrades) : array
     {
         $result = [];
         $mapper = new Mapper();
@@ -35,14 +58,17 @@ class Village extends Model
             $altDom = FluentDOM::QueryCss("<div>$alt</div>", 'text/html5');
 
             $construction = new Construction();
-            $upgradeInfo = new Info();
+            $upgradeInfo = $construction->getUpgradeInfo();
 
             $construction->constructionId = (int)$regex->matchSingle("/build\.php\?id=([0-9]+)/", $href);
             $construction->name = $translator->translate(
                 $regex->matchSingle("/^([a-zA-Z\s]+) <span class=\"level\">/", $alt)
             );
             $construction->level = (int)$regex->matchSingle("/([0-9]+)/", $altDom->find('.level')->text());
-            $construction->upgradeInfo = $upgradeInfo;
+
+            if ($upgrades) {
+                $construction->load();
+            }
 
             $upgradeInfo->upgradeLevel = $construction->level + 1;
             $upgradeInfo->clay = (int)($altDom->find('.resources.r1')->text());
@@ -54,6 +80,21 @@ class Village extends Model
         }
 
         return $result;
+    }
+
+    public function getCurrentVillageId()
+    {
+        return $this->villageId;
+    }
+
+    public function switchTo($villageId) : bool
+    {
+        $villageId = (int) $villageId;
+        if ($this->villageId !== $villageId) {
+            $response = Client::getInstance()->get("dorf2.php?newdid=$villageId");
+            $this->load($response);
+        }
+        return $this->villageId === $villageId;
     }
 
 }

@@ -2,16 +2,10 @@
 
 namespace Timpack\Travian\Model;
 
-use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
 class Account extends Model
 {
-
-    /**
-     * @var Client
-     */
-    protected $client;
 
     /**
      * @var ResponseInterface
@@ -39,7 +33,7 @@ class Account extends Model
             'w' => '1920:1080'
         ];
 
-        $loginResult = $this->client->post('dorf1.php', [
+        $loginResult = Client::getInstance()->post('dorf1.php', [
             'form_params' => $params,
             'headers' => [
                 'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0'
@@ -52,7 +46,7 @@ class Account extends Model
 
     public function logout() : bool
     {
-        $this->client->get('logout.php');
+        Client::getInstance()->get('logout.php');
         $this->load();
         return !$this->isLoggedIn();
     }

@@ -20,6 +20,7 @@ class ListCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $renderer = $this->getRenderer($input);
         $units = new Unit();
         $rows = [];
         

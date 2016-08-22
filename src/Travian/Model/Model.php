@@ -4,8 +4,6 @@ namespace Timpack\Travian\Model;
 
 use FluentDOM;
 use FluentDOM\Query;
-use GuzzleHttp\Client;
-use GuzzleHttp\Cookie\FileCookieJar;
 use Psr\Http\Message\ResponseInterface;
 
 class Model
@@ -17,14 +15,14 @@ class Model
     protected $dataSource = '/dorf1.php';
 
     /**
-     * @var Client
-     */
-    protected $client;
-
-    /**
      * @var ResponseInterface
      */
     protected $response;
+
+    /**
+     * @var string
+     */
+    protected $responseBody;
 
     /**
      * @var Query
@@ -33,19 +31,28 @@ class Model
 
     public function __construct($load = true)
     {
-        $cookieJar = new FileCookieJar(sys_get_temp_dir() . '/ttc.txt', true);
-        $this->client = new Client(['base_uri' => 'http://ts3.travian.nl', 'cookies' => $cookieJar]);
         if ($load) {
+            $this->loadDataSource();
             $this->load();
         }
     }
 
-    public function load() : self
+    public function loadDataSource()
     {
-        $this->response = $this->client->get($this->getDataSource());
-        $body = (string)$this->response->getBody();
-        $this->data = FluentDOM::QueryCss($body, 'text/html5');
+        return Client::getInstance()->get($this->getDataSource());
+    }
+
+    public function load(ResponseInterface $response = null)
+    {
+        $this->response = $response ? $response : $this->loadDataSource();
+        $this->responseBody = (string)$this->response->getBody();
+        $this->data = FluentDOM::QueryCss($this->responseBody, 'text/html5');
+        $this->afterLoad();
         return $this;
+    }
+
+    protected function afterLoad()
+    {
     }
 
     /**

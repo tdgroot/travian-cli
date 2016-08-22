@@ -7,7 +7,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Timpack\Travian\Command\AbstractCommand;
-use Timpack\Travian\Model\Resource\Field;
 use Timpack\Travian\Model\Resource;
 
 class ListCommand extends AbstractCommand
@@ -23,7 +22,7 @@ class ListCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $renderer = $this->getRenderer($input, $output);
+        $renderer = $this->getRenderer($input);
         $resources = new Resource();
         $rows = [];
 
