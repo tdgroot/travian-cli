@@ -1,0 +1,36 @@
+#!/usr/bin/php
+<?php
+
+use Phine\Phar\Builder;
+use Phine\Phar\Stub;
+use Symfony\Component\Finder\Finder;
+
+$projectRoot = dirname(__DIR__) . DIRECTORY_SEPARATOR;
+$srcRoot = "$projectRoot/src";
+
+require($projectRoot . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
+$builder = Builder::create($projectRoot . DIRECTORY_SEPARATOR . 'bin/travian-cli.phar');
+
+$builder->addFile("{$projectRoot}app/console", 'app/console');
+$builder->buildFromDirectory("$projectRoot", '/(src|app)/');
+
+// add the dependencies
+$builder->buildFromIterator(
+    Finder::create()
+        ->files()
+        ->name('*.php')
+        ->exclude('Tests')
+        ->in("$projectRoot/vendor")
+        ->getIterator()
+    , $projectRoot
+);
+
+$builder->setStub(
+    Stub::create()
+        ->mapPhar('travian-cli')
+        ->addRequire('app/console')
+        ->getStub()
+);
+
+unlink("$projectRoot/bin/travian-cli");
+rename("$projectRoot/bin/travian-cli.phar", "$projectRoot/bin/travian-cli");

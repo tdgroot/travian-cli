@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "27d9ef684fbd2bc08e7e4ad441a5808b",
-    "content-hash": "f60875728d525323fceb3e607e1ca3bb",
+    "hash": "edecd5594566381fa992824a381715cb",
+    "content-hash": "8e122866c81e21eb62df6affe746f7c7",
     "packages": [
         {
             "name": "carica/phpcss",
@@ -698,12 +698,272 @@
             "time": "2016-05-18 14:26:46"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "phine/exception",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kherge-abandoned/lib-exception.git",
+                "reference": "150c6b6090b2ebc53c60e87cb20c7f1287b7b68a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kherge-abandoned/lib-exception/zipball/150c6b6090b2ebc53c60e87cb20c7f1287b7b68a",
+                "reference": "150c6b6090b2ebc53c60e87cb20c7f1287b7b68a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "league/phpunit-coverage-listener": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Phine\\Exception": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A PHP library for improving the use of exceptions.",
+            "homepage": "https://github.com/phine/lib-exception",
+            "keywords": [
+                "exception"
+            ],
+            "time": "2013-08-27 17:43:25"
+        },
+        {
+            "name": "phine/observer",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kherge-abandoned/lib-observer.git",
+                "reference": "a3ed2f81c79a056ba1fc4949e03c3e1601665106"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kherge-abandoned/lib-observer/zipball/a3ed2f81c79a056ba1fc4949e03c3e1601665106",
+                "reference": "a3ed2f81c79a056ba1fc4949e03c3e1601665106",
+                "shasum": ""
+            },
+            "require": {
+                "phine/exception": "~1.0",
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "league/phpunit-coverage-listener": "~1.0",
+                "phine/test": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Phine\\Observer": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A PHP library that implements the observer pattern.",
+            "homepage": "https://github.com/phine/lib-observer",
+            "keywords": [
+                "observer"
+            ],
+            "time": "2013-12-17 23:50:08"
+        },
+        {
+            "name": "phine/path",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/box-project/box2-path.git",
+                "reference": "cbe1a5eb6cf22958394db2469af9b773508abddd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/box-project/box2-path/zipball/cbe1a5eb6cf22958394db2469af9b773508abddd",
+                "reference": "cbe1a5eb6cf22958394db2469af9b773508abddd",
+                "shasum": ""
+            },
+            "require": {
+                "phine/exception": "~1.0",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "league/phpunit-coverage-listener": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Phine\\Path": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A PHP library for improving the use of file system paths.",
+            "homepage": "https://github.com/phine/lib-path",
+            "keywords": [
+                "file",
+                "path",
+                "system"
+            ],
+            "time": "2013-10-15 22:58:04"
+        },
+        {
+            "name": "phine/phar",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kherge-abandoned/lib-phar.git",
+                "reference": "6ba06dcbd094926ebc3be75cbb2067b530c743f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kherge-abandoned/lib-phar/zipball/6ba06dcbd094926ebc3be75cbb2067b530c743f5",
+                "reference": "6ba06dcbd094926ebc3be75cbb2067b530c743f5",
+                "shasum": ""
+            },
+            "require": {
+                "phine/exception": "~1.0",
+                "phine/observer": "~2.0.0",
+                "phine/path": "~1.0",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "league/phpunit-coverage-listener": "~1.0",
+                "phine/test": "~1.0"
+            },
+            "suggest": {
+                "ext-phar": "For creating PHP archives."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Phine\\Phar": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io"
+                }
+            ],
+            "description": "A PHP library for creating and reading (without the phar extension) PHP archives.",
+            "homepage": "https://github.com/phine/lib-phar",
+            "keywords": [
+                "phar"
+            ],
+            "time": "2013-12-18 00:12:41"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "40d17ed287bf51a2f884c4619ce8ff2a1c5cd219"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/40d17ed287bf51a2f884c4619ce8ff2a1c5cd219",
+                "reference": "40d17ed287bf51a2f884c4619ce8ff2a1c5cd219",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Finder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-05-13 18:06:41"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.0"
+    },
     "platform-dev": []
 }
