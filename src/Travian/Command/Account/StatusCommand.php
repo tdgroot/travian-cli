@@ -33,6 +33,7 @@ class StatusCommand extends Command
             return;
         }
         $output->writeln('Username: ' . $account->getUsername());
+        $output->writeln('UserAgent: ' . $account->getSession()->getData('userAgent'));
     }
 
 }

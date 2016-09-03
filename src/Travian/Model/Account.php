@@ -2,6 +2,7 @@
 
 namespace Timpack\Travian\Model;
 
+use Faker\Provider\UserAgent;
 use Psr\Http\Message\ResponseInterface;
 
 class Account extends Model
@@ -11,6 +12,17 @@ class Account extends Model
      * @var ResponseInterface
      */
     protected $response;
+
+    /**
+     * @var Session
+     */
+    protected $session;
+
+    public function __construct($load = true)
+    {
+        parent::__construct($load);
+        $this->session = Session::getInstance();
+    }
 
     public function isLoggedIn($username = null) : bool
     {
@@ -33,11 +45,11 @@ class Account extends Model
             'w' => '1920:1080'
         ];
 
+        $userAgent = UserAgent::userAgent();
+        $session = Session::getInstance()->flushSession();
+
         $loginResult = Client::getInstance()->post('dorf1.php', [
-            'form_params' => $params,
-            'headers' => [
-                'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0'
-            ]
+            'form_params' => $params
         ]);
 
         $this->load();
@@ -54,6 +66,11 @@ class Account extends Model
     public function getUsername() : string
     {
         return trim($this->data->find('.playerName')->text());
+    }
+
+    public function getSession() : Session
+    {
+        return $this->session;
     }
 
 }

@@ -3,6 +3,7 @@
 namespace Timpack\Travian\Model;
 
 
+use Faker\Provider\UserAgent;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\FileCookieJar;
 use Psr\Http\Message\ResponseInterface;
@@ -48,7 +49,7 @@ class Client
      */
     public function get($path, $options = [])
     {
-        return $this->guzzleClient->get($path, $options);
+        return $this->guzzleClient->get($path, array_merge_recursive($this->getOptions(), $options));
     }
 
     /**
@@ -58,7 +59,21 @@ class Client
      */
     public function post($path, $options = [])
     {
-        return $this->guzzleClient->post($path, $options);
+        return $this->guzzleClient->post($path, array_merge_recursive($this->getOptions(), $options));
+    }
+
+    protected function getOptions()
+    {
+        $session = Session::getInstance();
+        if (!$session->getData('userAgent')) {
+            $session->setData('userAgent', UserAgent::userAgent());
+        }
+
+        return [
+            'headers' => [
+                'User-Agent' => $session->getData('userAgent')
+            ]
+        ];
     }
 
 }

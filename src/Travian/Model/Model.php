@@ -32,7 +32,6 @@ class Model
     public function __construct($load = true)
     {
         if ($load) {
-            $this->loadDataSource();
             $this->load();
         }
     }
