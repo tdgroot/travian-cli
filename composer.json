@@ -19,7 +19,8 @@
         "fluentdom/fluentdom": "^5.3",
         "fluentdom/selectors-phpcss": "^1.0",
         "fluentdom/html5": "^1.1",
-        "khill/php-duration": "^1.0"
+        "khill/php-duration": "^1.0",
+        "fzaninotto/faker": "v1.6.0"
     },
     "autoload":
     {
