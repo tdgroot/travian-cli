@@ -1,5 +1,6 @@
 {
     "name": "timpack/travian-cli",
+    "version": "1.0.0",
     "description": "Travian client",
     "minimum-stability": "alpha",
     "license": "proprietary",
@@ -31,5 +32,6 @@
         "files": [
             "src/Travian/register.php"
         ]
-    }
+    },
+    "bin": ["app/console"]
 }
