@@ -33,5 +33,5 @@
             "src/Travian/register.php"
         ]
     },
-    "bin": ["app/console"]
+    "bin": ["bin/travian-cli"]
 }
