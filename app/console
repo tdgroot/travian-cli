@@ -4,12 +4,12 @@
 use Symfony\Component\Console\Application;
 use Timpack\Travian\CommandRegistry;
 
-require_once(__DIR__ . '/../vendor/autoload.php');
+require_once(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
 
 $application = new Application();
 
 $commandRegistry = CommandRegistry::getInstance()->getCommands();
-foreach($commandRegistry as $_commandClass) {
+foreach ($commandRegistry as $_commandClass) {
     $application->add(new $_commandClass());
 }
 
