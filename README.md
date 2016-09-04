@@ -9,6 +9,18 @@ Travian-CLI is currently incomplete and under development.
 
 Travian-CLI uses Composer. Having installed composer, one should run `composer install` in the root directory of this project in order for the program to function properly.
 
+### Installation
+
+**The composer way**
+
+- Run command `composer global require timpack/travian-cli`
+- Add directory `~/.config/composer/vendor/bin` to your `$PATH` variable
+
+**The git way**
+- Run command `git clone git@github.com:Desmaster/travian-cli.git`
+- In that directory, run command `composer install`
+- Then run the application using `app/console` 
+
 ### Requirements
 
 - php >= 7.0
