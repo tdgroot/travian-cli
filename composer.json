@@ -1,6 +1,6 @@
 {
     "name": "timpack/travian-cli",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Travian client",
     "minimum-stability": "alpha",
     "license": "proprietary",
